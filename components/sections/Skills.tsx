@@ -26,7 +26,7 @@ export default function Skills() {
       </div>
 
       {/* 3-column grid — one column per category */}
-      <div className="grid md:grid-cols-3 gap-0 border-t border-border">
+      <div className="grid md:grid-cols-3 gap-0">
         {SKILL_GROUPS.map((group, gi) => (
           <div
             key={group.category}

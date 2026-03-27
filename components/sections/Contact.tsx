@@ -54,7 +54,7 @@ export default function Contact() {
                 GitHub
               </span>
               <span className="font-mono text-text-secondary text-xs">
-                krishzkaushik ↗
+                {PERSONAL_INFO.github.replace("https://github.com/", "")} ↗
               </span>
             </motion.a>
 
@@ -70,7 +70,7 @@ export default function Contact() {
                 LinkedIn
               </span>
               <span className="font-mono text-text-secondary text-xs">
-                krishzkaushik ↗
+                {PERSONAL_INFO.linkedin.replace("https://www.linkedin.com/in/", "").replace("/", "")} ↗
               </span>
             </motion.a>
           </div>

@@ -44,7 +44,7 @@ export default function BackgroundCanvas() {
           height: "clamp(400px, 55vw, 800px)",
           background: isDark
             ? "radial-gradient(circle, rgba(197,151,92,0.11) 0%, transparent 65%)"
-            : "radial-gradient(circle, rgba(197,151,92,0.07) 0%, transparent 65%)",
+            : "radial-gradient(circle, rgba(107,158,80,0.10) 0%, transparent 65%)",
           top: "-15%",
           left: "-10%",
           filter: "blur(1px)",
@@ -61,7 +61,7 @@ export default function BackgroundCanvas() {
           height: "clamp(300px, 40vw, 600px)",
           background: isDark
             ? "radial-gradient(circle, rgba(180,130,60,0.06) 0%, transparent 65%)"
-            : "radial-gradient(circle, rgba(180,130,60,0.04) 0%, transparent 65%)",
+            : "radial-gradient(circle, rgba(80,140,65,0.07) 0%, transparent 65%)",
           bottom: "5%",
           right: "-5%",
           filter: "blur(1px)",

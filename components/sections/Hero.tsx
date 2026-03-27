@@ -106,10 +106,10 @@ export default function Hero({ introComplete }: HeroProps) {
 
         {/* CTAs */}
         <motion.div {...fadeUp(0.25)} className="flex flex-wrap gap-3">
-          <CTAButton href={PERSONAL_INFO.github}   label="GitHub"   variant="outline" external icon={<GithubIcon />} />
-          <CTAButton href={PERSONAL_INFO.linkedin}  label="LinkedIn" variant="outline" external icon={<LinkedinIcon />} />
-          <CTAButton href="/resume.pdf"             label="Resume"   variant="primary" download  icon={<DownloadIcon />} />
-          <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Email" variant="outline" external icon={<MailIcon />} />
+          <CTAButton href={PERSONAL_INFO.github}            label="GitHub"   variant="outline" external icon={<GithubIcon />} />
+          <CTAButton href={PERSONAL_INFO.linkedin}          label="LinkedIn" variant="outline" external icon={<LinkedinIcon />} />
+          <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Email"    variant="outline" external icon={<MailIcon />} />
+          <CTAButton href="/resume.pdf"                     label="Resume"   variant="primary" download  icon={<DownloadIcon />} />
         </motion.div>
       </div>
 
