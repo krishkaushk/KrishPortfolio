@@ -12,7 +12,7 @@ export const PERSONAL_INFO = {
   gradYear: 2028,
 } as const;
 
-export const TAGLINE = "First-year CS student. I build things that actually ship.";
+export const TAGLINE = "I build things.";
 
 export const BIO =
   "I'm studying Computing Science at SFU with a minor in Business — which means I'm equally " +

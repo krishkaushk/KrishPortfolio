@@ -8,8 +8,25 @@ export default function About() {
     <SectionWrapper id="about">
       <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
 
-        {/* Left — label + meta */}
+        {/* Left — circular headshot + label + meta */}
         <div>
+          {/*
+            REPLACE THIS DIV WITH YOUR HEADSHOT:
+
+            import Image from "next/image"
+
+            <div className="relative w-32 h-32 rounded-full overflow-hidden mb-8">
+              <Image src="/headshot.jpg" alt="Krish Zhao Kaushik" fill className="object-cover" />
+            </div>
+          */}
+          <div className="relative w-32 h-32 rounded-full overflow-hidden mb-8 border border-border bg-bg-secondary flex items-center justify-center select-none">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+              stroke="var(--border-color)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </div>
+
           <p className="font-mono text-highlight text-xs tracking-[0.2em] uppercase mb-8">
             About
           </p>

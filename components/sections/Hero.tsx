@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CTAButton from "@/components/ui/CTAButton";
 import { PERSONAL_INFO, TAGLINE } from "@/data/portfolio";
@@ -24,9 +25,36 @@ const DownloadIcon = () => (
   </svg>
 );
 
+function Typewriter({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    let charTimeout: ReturnType<typeof setTimeout>;
+    const startTimeout = setTimeout(() => {
+      let i = 0;
+      const tick = () => {
+        i++;
+        setDisplayed(text.slice(0, i));
+        if (i < text.length) charTimeout = setTimeout(tick, 45);
+      };
+      tick();
+    }, delay);
+    return () => { clearTimeout(startTimeout); clearTimeout(charTimeout); };
+  }, [text, delay]);
+
+  return (
+    <>
+      {displayed}
+      {displayed.length < text.length && (
+        <span className="cursor-blink" aria-hidden>|</span>
+      )}
+    </>
+  );
+}
+
 export default function Hero() {
   return (
-    <section id="hero" className="relative">
+    <section id="hero" className="relative sticky top-0 min-h-screen overflow-hidden">
 
       {/* ── Photo area ─────────────────────────────────────────── */}
       <div className="relative w-full overflow-hidden" style={{ height: "76vh", minHeight: 520 }}>
@@ -58,12 +86,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Bottom fade — photo bleeds into page bg */}
+        {/* Bottom fade */}
         <div
           className="absolute inset-x-0 bottom-0 h-48 pointer-events-none"
-          style={{
-            background: "linear-gradient(to bottom, transparent, var(--bg-primary))",
-          }}
+          style={{ background: "linear-gradient(to bottom, transparent, var(--bg-primary))" }}
         />
       </div>
 
@@ -79,7 +105,7 @@ export default function Hero() {
             {PERSONAL_INFO.university} &nbsp;·&nbsp; Computing Science &nbsp;·&nbsp; {PERSONAL_INFO.gradYear}
           </p>
 
-          {/* Name — layoutId matches Intro's h1, shared layout animation lands it here */}
+          {/* Name — layoutId matches Intro, shared layout animation lands it here */}
           <motion.h1
             layoutId="hero-name"
             className="font-playfair text-text-primary leading-none mb-5"
@@ -88,11 +114,11 @@ export default function Hero() {
             Krish Zhao Kaushik
           </motion.h1>
 
-          {/* Tagline + divider */}
+          {/* Tagline with typewriter — delay matches intro duration */}
           <div className="flex items-center gap-4 mb-8">
             <div className="w-8 h-px bg-border" />
             <p className="font-inter text-text-secondary text-sm">
-              {TAGLINE}
+              <Typewriter text={TAGLINE} delay={2500} />
             </p>
           </div>
 

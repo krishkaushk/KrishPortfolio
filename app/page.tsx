@@ -14,14 +14,19 @@ export default function Home() {
       <Intro />
       <Navbar />
       <main>
+        {/* Hero is sticky — sits behind everything that follows */}
         <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Contact />
+
+        {/* This wrapper slides over the sticky hero as you scroll */}
+        <div className="relative z-10 bg-bg-primary">
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Contact />
+          <Footer />
+        </div>
       </main>
-      <Footer />
     </>
   );
 }
