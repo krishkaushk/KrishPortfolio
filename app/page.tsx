@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import BackgroundCanvas from "@/components/BackgroundCanvas";
 import Intro from "@/components/Intro";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,6 +15,9 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
 
+  // Stable reference — never changes between renders, so Intro's empty-dep effect stays clean
+  const handleIntroComplete = useCallback(() => setIntroComplete(true), []);
+
   // Disable browser scroll restoration and jump to top on every load
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -24,29 +28,32 @@ export default function Home() {
 
   return (
     <>
-      <Intro onComplete={() => setIntroComplete(true)} />
-      <Navbar />
-      <main>
-        {/* Hero is sticky — sits behind everything that follows */}
-        <Hero introComplete={introComplete} />
+      {/* Fixed atmospheric background — always behind everything, never scrolls */}
+      <BackgroundCanvas />
 
-        {/* This wrapper slides over the sticky hero as you scroll */}
-        {/* Hidden during intro so the overlay reveals a blank hero, not pre-rendered content */}
-        <div
-          className="relative z-10 bg-bg-primary"
-          style={{
-            opacity: introComplete ? 1 : 0,
-            transition: "opacity 0.4s ease",
-          }}
-        >
-          <About />
-          <Experience />
-          <Projects />
-          <Skills />
-          <Contact />
-          <Footer />
-        </div>
-      </main>
+      {/* All page content sits above the fixed canvas */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <Intro onComplete={handleIntroComplete} />
+        <Navbar />
+        <main>
+          <Hero introComplete={introComplete} />
+
+          {/* Below-fold sections — hidden during intro, fades in after */}
+          <div
+            style={{
+              opacity: introComplete ? 1 : 0,
+              transition: "opacity 0.4s ease",
+            }}
+          >
+            <About />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Contact />
+            <Footer />
+          </div>
+        </main>
+      </div>
     </>
   );
 }

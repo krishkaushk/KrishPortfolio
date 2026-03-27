@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import CTAButton from "@/components/ui/CTAButton";
 import { PERSONAL_INFO, TAGLINE } from "@/data/portfolio";
-import { useTheme } from "next-themes";
 
 const GithubIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -58,33 +57,6 @@ interface HeroProps {
 }
 
 export default function Hero({ introComplete }: HeroProps) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-  const springX = useSpring(mouseX, { stiffness: 40, damping: 25 });
-  const springY = useSpring(mouseY, { stiffness: 40, damping: 25 });
-
-  // Map 0-1 mouse position to pixel offset for parallax
-  const blob1X = useTransform(springX, [0, 1], [-40, 40]);
-  const blob1Y = useTransform(springY, [0, 1], [-25, 25]);
-  const blob2X = useTransform(springX, [0, 1], [30, -30]);
-  const blob2Y = useTransform(springY, [0, 1], [20, -20]);
-
-  useEffect(() => {
-    setMounted(true);
-    const onMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX / window.innerWidth);
-      mouseY.set(e.clientY / window.innerHeight);
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [mouseX, mouseY]);
-
-  const isDark = !mounted || resolvedTheme !== "light";
-
   // Stagger delays for entrance animations (fire after intro completes)
   const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 20 },
@@ -94,51 +66,9 @@ export default function Hero({ introComplete }: HeroProps) {
 
   return (
     <section
-      ref={sectionRef}
       id="hero"
-      className="relative sticky top-0 min-h-screen overflow-hidden flex flex-col"
+      className="relative min-h-screen overflow-hidden flex flex-col"
     >
-      {/* ── Animated gradient background ─────────────────────────── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Primary warm orb — top left, mouse reactive */}
-        <motion.div
-          className="absolute rounded-full"
-          style={{
-            width: "clamp(400px, 55vw, 800px)",
-            height: "clamp(400px, 55vw, 800px)",
-            background: isDark
-              ? "radial-gradient(circle, rgba(197,151,92,0.10) 0%, transparent 65%)"
-              : "radial-gradient(circle, rgba(197,151,92,0.07) 0%, transparent 65%)",
-            top: "-15%",
-            left: "-10%",
-            filter: "blur(1px)",
-            x: blob1X,
-            y: blob1Y,
-          }}
-        />
-        {/* Secondary cool orb — bottom right */}
-        <motion.div
-          className="absolute rounded-full"
-          style={{
-            width: "clamp(300px, 40vw, 600px)",
-            height: "clamp(300px, 40vw, 600px)",
-            background: isDark
-              ? "radial-gradient(circle, rgba(100,80,200,0.07) 0%, transparent 65%)"
-              : "radial-gradient(circle, rgba(180,150,110,0.05) 0%, transparent 65%)",
-            bottom: "5%",
-            right: "-5%",
-            filter: "blur(1px)",
-            x: blob2X,
-            y: blob2Y,
-          }}
-        />
-        {/* Subtle vignette bottom fade to bg-primary */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, var(--bg-primary))" }}
-        />
-      </div>
-
       {/* ── Main content ─────────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col justify-center flex-1 px-6 pt-24 pb-8 max-w-5xl mx-auto w-full">
 
@@ -147,9 +77,9 @@ export default function Hero({ introComplete }: HeroProps) {
           {PERSONAL_INFO.university}&nbsp;·&nbsp;Computing Science&nbsp;·&nbsp;{PERSONAL_INFO.gradYear}
         </motion.p>
 
-        {/* Name — layoutId matches Intro; shared layout animation lands it here */}
+        {/* Name */}
         <motion.h1
-          layoutId="hero-name"
+          {...fadeUp(0.0)}
           className="font-playfair text-text-primary leading-none mb-6"
           style={{ fontSize: "clamp(2.8rem, 8.5vw, 7.5rem)", letterSpacing: "-0.02em" }}
         >

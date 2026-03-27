@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     stack: ["JavaScript", "React", "Supabase", "SQL", "HTML", "CSS"],
     githubUrl: "https://github.com/krishkaushk/InternLinked",
     demoUrl: "https://devpost.com/software/internlinked",
-    accentColor: "#7C3AED",
+    accentColor: "#C5975C",
   },
   {
     id: "pitchpal",
@@ -63,7 +63,7 @@ export const PROJECTS: Project[] = [
     stack: ["React", "TypeScript", "Gemini API", "ElevenLabs API", "HTML", "CSS"],
     githubUrl: "https://github.com/krishkaushk/PitchPal",
     demoUrl: "https://devpost.com/software/pitchpal",
-    accentColor: "#06B6D4",
+    accentColor: "#B07840",
   },
 ];
 
