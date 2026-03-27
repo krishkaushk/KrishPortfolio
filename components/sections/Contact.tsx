@@ -7,14 +7,17 @@ import { PERSONAL_INFO } from "@/data/portfolio";
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
-      <div className="border-t border-border pt-12">
+      <div className="pt-4">
+        <div className="flex items-center gap-4 mb-16">
+          <p className="font-mono text-highlight text-xs tracking-[0.2em] uppercase shrink-0">
+            Contact
+          </p>
+          <div className="flex-1 h-px" style={{ background: "var(--border-color)" }} />
+        </div>
         <div className="grid md:grid-cols-[1fr_1fr] gap-12 md:gap-20 items-end">
 
           {/* Left */}
           <div>
-            <p className="font-mono text-highlight text-xs tracking-[0.2em] uppercase mb-6">
-              Contact
-            </p>
             <h2
               className="font-grotesk font-bold text-text-primary leading-tight mb-0"
               style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}

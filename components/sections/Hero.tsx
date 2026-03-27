@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import CTAButton from "@/components/ui/CTAButton";
 import { PERSONAL_INFO, TAGLINE } from "@/data/portfolio";
+import { useTheme } from "next-themes";
 
 const GithubIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -52,101 +53,154 @@ function Typewriter({ text, delay = 0 }: { text: string; delay?: number }) {
   );
 }
 
-export default function Hero() {
+interface HeroProps {
+  introComplete: boolean;
+}
+
+export default function Hero({ introComplete }: HeroProps) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { stiffness: 40, damping: 25 });
+  const springY = useSpring(mouseY, { stiffness: 40, damping: 25 });
+
+  // Map 0-1 mouse position to pixel offset for parallax
+  const blob1X = useTransform(springX, [0, 1], [-40, 40]);
+  const blob1Y = useTransform(springY, [0, 1], [-25, 25]);
+  const blob2X = useTransform(springX, [0, 1], [30, -30]);
+  const blob2Y = useTransform(springY, [0, 1], [20, -20]);
+
+  useEffect(() => {
+    setMounted(true);
+    const onMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX / window.innerWidth);
+      mouseY.set(e.clientY / window.innerHeight);
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [mouseX, mouseY]);
+
+  const isDark = !mounted || resolvedTheme !== "light";
+
+  // Stagger delays for entrance animations (fire after intro completes)
+  const fadeUp = (delay: number) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  });
+
   return (
-    <section id="hero" className="relative sticky top-0 min-h-screen overflow-hidden">
-
-      {/* ── Photo area ─────────────────────────────────────────── */}
-      <div className="relative w-full overflow-hidden" style={{ height: "76vh", minHeight: 520 }}>
-
-        {/*
-          REPLACE THIS DIV WITH YOUR PHOTO:
-
-          import Image from "next/image"
-
-          <Image
-            src="/photo.jpg"
-            alt="Krish Zhao Kaushik"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        */}
-        <div className="absolute inset-0 bg-bg-secondary flex items-center justify-center select-none">
-          <div className="flex flex-col items-center gap-3">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
-              stroke="var(--border-color)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="1" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg>
-            <span className="font-mono text-xs tracking-widest" style={{ color: "var(--border-color)" }}>
-              /public/photo.jpg
-            </span>
-          </div>
-        </div>
-
-        {/* Bottom fade */}
+    <section
+      ref={sectionRef}
+      id="hero"
+      className="relative sticky top-0 min-h-screen overflow-hidden flex flex-col"
+    >
+      {/* ── Animated gradient background ─────────────────────────── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Primary warm orb — top left, mouse reactive */}
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: "clamp(400px, 55vw, 800px)",
+            height: "clamp(400px, 55vw, 800px)",
+            background: isDark
+              ? "radial-gradient(circle, rgba(197,151,92,0.10) 0%, transparent 65%)"
+              : "radial-gradient(circle, rgba(197,151,92,0.07) 0%, transparent 65%)",
+            top: "-15%",
+            left: "-10%",
+            filter: "blur(1px)",
+            x: blob1X,
+            y: blob1Y,
+          }}
+        />
+        {/* Secondary cool orb — bottom right */}
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: "clamp(300px, 40vw, 600px)",
+            height: "clamp(300px, 40vw, 600px)",
+            background: isDark
+              ? "radial-gradient(circle, rgba(100,80,200,0.07) 0%, transparent 65%)"
+              : "radial-gradient(circle, rgba(180,150,110,0.05) 0%, transparent 65%)",
+            bottom: "5%",
+            right: "-5%",
+            filter: "blur(1px)",
+            x: blob2X,
+            y: blob2Y,
+          }}
+        />
+        {/* Subtle vignette bottom fade to bg-primary */}
         <div
-          className="absolute inset-x-0 bottom-0 h-48 pointer-events-none"
+          className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
           style={{ background: "linear-gradient(to bottom, transparent, var(--bg-primary))" }}
         />
       </div>
 
-      {/* ── Name + info block ───────────────────────────────────── */}
-      <div className="relative z-10 -mt-24 px-6 pb-20 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.1 }}
+      {/* ── Main content ─────────────────────────────────────────── */}
+      <div className="relative z-10 flex flex-col justify-center flex-1 px-6 pt-24 pb-8 max-w-5xl mx-auto w-full">
+
+        {/* Eyebrow */}
+        <motion.p {...fadeUp(0.05)} className="font-mono text-highlight text-xs tracking-[0.22em] uppercase mb-6">
+          {PERSONAL_INFO.university}&nbsp;·&nbsp;Computing Science&nbsp;·&nbsp;{PERSONAL_INFO.gradYear}
+        </motion.p>
+
+        {/* Name — layoutId matches Intro; shared layout animation lands it here */}
+        <motion.h1
+          layoutId="hero-name"
+          className="font-playfair text-text-primary leading-none mb-6"
+          style={{ fontSize: "clamp(2.8rem, 8.5vw, 7.5rem)", letterSpacing: "-0.02em" }}
         >
-          {/* Eyebrow */}
-          <p className="font-mono text-highlight text-xs tracking-[0.22em] uppercase mb-5">
-            {PERSONAL_INFO.university} &nbsp;·&nbsp; Computing Science &nbsp;·&nbsp; {PERSONAL_INFO.gradYear}
+          Krish Zhao Kaushik
+        </motion.h1>
+
+        {/* Tagline */}
+        <motion.div {...fadeUp(0.15)} className="flex items-center gap-4 mb-10">
+          <div
+            className="h-px flex-shrink-0"
+            style={{ width: "2.5rem", background: "var(--highlight, #C5975C)", opacity: 0.7 }}
+          />
+          <p className="font-inter text-text-secondary text-base">
+            <Typewriter text={TAGLINE} delay={2500} />
           </p>
+        </motion.div>
 
-          {/* Name — layoutId matches Intro, shared layout animation lands it here */}
-          <motion.h1
-            layoutId="hero-name"
-            className="font-playfair text-text-primary leading-none mb-5"
-            style={{ fontSize: "clamp(2.6rem, 8vw, 6rem)", letterSpacing: "-0.01em" }}
-          >
-            Krish Zhao Kaushik
-          </motion.h1>
-
-          {/* Tagline with typewriter — delay matches intro duration */}
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-8 h-px bg-border" />
-            <p className="font-inter text-text-secondary text-sm">
-              <Typewriter text={TAGLINE} delay={2500} />
-            </p>
-          </div>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-3">
-            <CTAButton href={PERSONAL_INFO.github}   label="GitHub"   variant="outline" external icon={<GithubIcon />} />
-            <CTAButton href={PERSONAL_INFO.linkedin}  label="LinkedIn" variant="outline" external icon={<LinkedinIcon />} />
-            <CTAButton href="/resume.pdf"             label="Resume"   variant="primary" download  icon={<DownloadIcon />} />
-            <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Contact" variant="outline" />
-          </div>
+        {/* CTAs */}
+        <motion.div {...fadeUp(0.25)} className="flex flex-wrap gap-3">
+          <CTAButton href={PERSONAL_INFO.github}   label="GitHub"   variant="outline" external icon={<GithubIcon />} />
+          <CTAButton href={PERSONAL_INFO.linkedin}  label="LinkedIn" variant="outline" external icon={<LinkedinIcon />} />
+          <CTAButton href="/resume.pdf"             label="Resume"   variant="primary" download  icon={<DownloadIcon />} />
+          <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Contact" variant="outline" />
         </motion.div>
       </div>
 
-      {/* Scroll chevron */}
-      <div className="flex justify-center pb-8">
+      {/* ── Scroll indicator ─────────────────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={introComplete ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
+        className="relative z-10 flex flex-col items-center gap-2 pb-10 mt-auto"
+      >
+        <span
+          className="font-mono text-[10px] tracking-[0.25em] uppercase"
+          style={{ color: "var(--text-secondary)", opacity: 0.45 }}
+        >
+          scroll
+        </span>
         <a
           href="#about"
-          className="text-text-secondary hover:text-text-primary transition-colors duration-200"
-          aria-label="Scroll down"
+          className="text-text-secondary hover:text-highlight transition-colors duration-300"
+          aria-label="Scroll to about"
           style={{ animation: "bounce-arrow 2s ease-in-out infinite" }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="m6 9 6 6 6-6" />
           </svg>
         </a>
-      </div>
-
+      </motion.div>
     </section>
   );
 }

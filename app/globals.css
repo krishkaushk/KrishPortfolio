@@ -61,6 +61,27 @@ body {
   100% { transform: translateX(210%) skewX(-10deg); }
 }
 
+/* Slow-drift for background gradient orbs (fallback / mobile) */
+@keyframes drift-slow {
+  0%   { transform: translate(0px,  0px) scale(1); }
+  33%  { transform: translate(20px, -15px) scale(1.03); }
+  66%  { transform: translate(-10px, 10px) scale(0.98); }
+  100% { transform: translate(0px,  0px) scale(1); }
+}
+
+@keyframes drift-slow-rev {
+  0%   { transform: translate(0px,   0px) scale(1); }
+  33%  { transform: translate(-15px, 10px) scale(0.97); }
+  66%  { transform: translate(10px, -8px) scale(1.02); }
+  100% { transform: translate(0px,   0px) scale(1); }
+}
+
+/* Subtle reveal line sweep */
+@keyframes reveal-line {
+  0%   { transform: scaleX(0); transform-origin: left; }
+  100% { transform: scaleX(1); transform-origin: left; }
+}
+
 /* ─── Shimmer (button hover) ────────────────────────────────── */
 .btn-shimmer {
   position: relative;

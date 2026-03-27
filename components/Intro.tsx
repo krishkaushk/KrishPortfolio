@@ -24,7 +24,11 @@ const charVariants: Variants = {
   },
 };
 
-export default function Intro() {
+interface IntroProps {
+  onComplete?: () => void;
+}
+
+export default function Intro({ onComplete }: IntroProps) {
   const [phase, setPhase] = useState<Phase>("entering");
   const [showChars, setShowChars] = useState(true);
   const [mounted, setMounted] = useState(false);
@@ -37,9 +41,12 @@ export default function Intro() {
     // 18 chars × 55ms stagger + 420ms last char = ~1410ms, add hold → 1700ms
     const t1 = setTimeout(() => setShowChars(false), 1700);
     const t2 = setTimeout(() => setPhase("exiting"), 1700);
-    const t3 = setTimeout(() => setPhase("done"), 2300);
+    const t3 = setTimeout(() => {
+      setPhase("done");
+      onComplete?.();
+    }, 2300);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, []);
+  }, [onComplete]);
 
   useEffect(() => {
     document.body.style.overflow = phase === "done" ? "" : "hidden";

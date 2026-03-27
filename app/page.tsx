@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Intro from "@/components/Intro";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,16 +12,33 @@ import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
+  const [introComplete, setIntroComplete] = useState(false);
+
+  // Disable browser scroll restoration and jump to top on every load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = "manual";
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, []);
+
   return (
     <>
-      <Intro />
+      <Intro onComplete={() => setIntroComplete(true)} />
       <Navbar />
       <main>
         {/* Hero is sticky — sits behind everything that follows */}
-        <Hero />
+        <Hero introComplete={introComplete} />
 
         {/* This wrapper slides over the sticky hero as you scroll */}
-        <div className="relative z-10 bg-bg-primary">
+        {/* Hidden during intro so the overlay reveals a blank hero, not pre-rendered content */}
+        <div
+          className="relative z-10 bg-bg-primary"
+          style={{
+            opacity: introComplete ? 1 : 0,
+            transition: "opacity 0.4s ease",
+          }}
+        >
           <About />
           <Experience />
           <Projects />
