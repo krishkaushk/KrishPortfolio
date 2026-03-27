@@ -79,13 +79,14 @@ export default function Hero() {
             {PERSONAL_INFO.university} &nbsp;·&nbsp; Computing Science &nbsp;·&nbsp; {PERSONAL_INFO.gradYear}
           </p>
 
-          {/* Name */}
-          <h1
+          {/* Name — layoutId matches Intro's h1, shared layout animation lands it here */}
+          <motion.h1
+            layoutId="hero-name"
             className="font-playfair text-text-primary leading-none mb-5"
             style={{ fontSize: "clamp(2.6rem, 8vw, 6rem)", letterSpacing: "-0.01em" }}
           >
             Krish Zhao Kaushik
-          </h1>
+          </motion.h1>
 
           {/* Tagline + divider */}
           <div className="flex items-center gap-4 mb-8">

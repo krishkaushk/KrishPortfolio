@@ -35,9 +35,13 @@ export default function About() {
           >
             Not just a student.
           </h2>
-          <p className="font-inter text-text-secondary leading-relaxed text-base">
-            {BIO}
-          </p>
+          <div className="flex flex-col gap-4">
+            {BIO.split("\n\n").map((para, i) => (
+              <p key={i} className="font-inter text-text-secondary leading-relaxed text-base">
+                {para}
+              </p>
+            ))}
+          </div>
         </div>
 
       </div>

@@ -12,14 +12,15 @@ export const PERSONAL_INFO = {
   gradYear: 2028,
 } as const;
 
-export const TAGLINE = "I build things.";
+export const TAGLINE = "First-year CS student. I build things that actually ship.";
 
 export const BIO =
-  "I'm a Computing Science student at SFU with a minor in Business. " +
-  "I'm drawn to the full stack — from wrangling APIs to making UIs that don't feel like enterprise software. " +
-  "I spent a summer at HME Medical building internal tools with JavaScript, Azure, and Power Automate, " +
-  "and I've shipped projects ranging from internship trackers to AI-powered pitch deck generators. " +
-  "I care about building things that are actually useful, not just technically impressive.";
+  "I'm studying Computing Science at SFU with a minor in Business — which means I'm equally " +
+  "comfortable debugging a SQL query at midnight and thinking about why nobody uses the thing I just built.\n\n" +
+  "Last summer I interned at HME Medical, where I built internal automation tools that cut the team's " +
+  "manual admin work down significantly. I've also shipped InternLinked and PitchPal at hackathons — " +
+  "one to track internship applications, one to practice pitch decks with AI feedback.\n\n" +
+  "I like building things end-to-end. Backend, frontend, whatever it takes to ship.";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "About", href: "#about" },
