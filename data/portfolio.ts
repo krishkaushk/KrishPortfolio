@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "portfolio",
-    title: "This Portfolio",
+    title: "My Website",
     description:
       "The site you're on. Built with Next.js, TypeScript, Tailwind, and Framer Motion — deployed on Vercel.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
