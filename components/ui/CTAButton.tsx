@@ -7,7 +7,7 @@ interface CTAButtonProps {
   label: string;
   variant: "primary" | "outline";
   external?: boolean;
-  download?: boolean;
+  download?: boolean | string;
   icon?: React.ReactNode;
 }
 

@@ -109,7 +109,7 @@ export default function Hero({ introComplete }: HeroProps) {
           <CTAButton href={PERSONAL_INFO.github}            label="GitHub"   variant="outline" external icon={<GithubIcon />} />
           <CTAButton href={PERSONAL_INFO.linkedin}          label="LinkedIn" variant="outline" external icon={<LinkedinIcon />} />
           <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Email"    variant="outline" external icon={<MailIcon />} />
-          <CTAButton href="/resume.pdf"                     label="Resume"   variant="primary" download  icon={<DownloadIcon />} />
+          <CTAButton href="/resume.pdf"                     label="Resume"   variant="primary" download="KrishZhaoKaushik_Resume" icon={<DownloadIcon />} />
         </motion.div>
       </div>
 

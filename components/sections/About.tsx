@@ -25,12 +25,12 @@ export default function About() {
         <div className="flex-1 h-px" style={{ background: "var(--border-color)" }} />
       </div>
 
-      <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
+      <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-20">
 
         {/* Left — meta card */}
         <div>
           {/* Profile image */}
-          <div className="relative w-28 h-28 rounded-full overflow-hidden mb-10">
+          <div className="relative w-36 h-36 rounded-full overflow-hidden mb-6">
             <Image
               src="/assets/profile.png"
               alt="Krish Kaushik"
@@ -43,9 +43,8 @@ export default function About() {
           <div className="flex flex-col gap-3 border-t border-border pt-6">
             {[
               PERSONAL_INFO.degree,
-              `& ${PERSONAL_INFO.minor} minor`,
-              PERSONAL_INFO.university,
-              getYearOfStudy(PERSONAL_INFO.gradYear),
+              `${PERSONAL_INFO.minor} Minor`,
+              `${PERSONAL_INFO.gradYear} Expected Graduation`,
             ].map((item, i) => (
               <motion.span
                 key={item}

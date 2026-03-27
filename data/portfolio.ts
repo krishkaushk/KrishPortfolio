@@ -39,6 +39,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Built internal automation tools using JavaScript, Azure, Entra ID, and Power Automate — cutting repetitive admin work that was eating up the team's time.",
       "Improved backend report efficiency by 30% through query optimization and process redesign.",
       "Managed and maintained 3 company websites, handling updates, bug fixes, and content changes.",
+      "Designed and led an internally deployed phishing campaign, collecting and processing data to deliver actionable insights accross every department.",
     ],
   },
 ];
