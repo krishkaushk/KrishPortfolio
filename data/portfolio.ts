@@ -5,7 +5,7 @@ export const PERSONAL_INFO = {
   firstName: "Krish",
   email: "krish.z.kaushik@gmail.com",
   github: "https://github.com/krishkaushk",
-  linkedin: "https://linkedin.com/in/krishzkaushik",
+  linkedin: "https://www.linkedin.com/in/krishzkaushik/",
   university: "Simon Fraser University",
   degree: "BSc Computing Science",
   minor: "Business",
@@ -61,23 +61,32 @@ export const PROJECTS: Project[] = [
     description:
       "Generates pitch slide decks and gives you a place to actually practice them — with real-time scoring, feedback, and narration powered by Gemini and ElevenLabs. Built at a hackathon.",
     stack: ["React", "TypeScript", "Gemini API", "ElevenLabs API", "HTML", "CSS"],
-    githubUrl: "https://github.com/krishkaushk/PitchPal",
-    demoUrl: "https://devpost.com/software/pitchpal",
+    githubUrl: "https://github.com/StormHacks2025/pitchpal1",
+    demoUrl: "https://devpost.com/software/pitchpal-t5opzn",
     accentColor: "#B07840",
+  },
+  {
+    id: "portfolio",
+    title: "This Portfolio",
+    description:
+      "The site you're on. Built from scratch — no templates. Focused on smooth animations, a clean design system, and a loading experience that doesn't feel like an afterthought.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    githubUrl: "https://github.com/krishkaushk/krish-portfolio",
+    accentColor: "#9A7B4F",
   },
 ];
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: "Languages",
-    skills: ["JavaScript", "TypeScript", "Python", "Java", "C", "C++", "HTML", "CSS", "SQL"],
+    skills: ["JavaScript", "TypeScript", "Python", "Java", "C", "C++", "SQL"],
   },
   {
-    category: "Frameworks & Platforms",
-    skills: ["React", "Next.js", "Node.js", "Supabase", "Azure", "Entra ID", "Power Automate", "MATLAB"],
+    category: "Frameworks & Tools",
+    skills: ["React", "Next.js", "Node.js", "Supabase", "Azure", "Power Automate", "MATLAB"],
   },
   {
-    category: "Tools",
-    skills: ["Git", "GitHub", "VS Code", "Excel", "PowerPoint", "Word"],
+    category: "Dev Tools",
+    skills: ["Git", "GitHub", "VS Code", "Entra ID"],
   },
 ];

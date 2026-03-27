@@ -25,6 +25,13 @@ const DownloadIcon = () => (
   </svg>
 );
 
+const MailIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
 function Typewriter({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayed, setDisplayed] = useState("");
 
@@ -102,7 +109,7 @@ export default function Hero({ introComplete }: HeroProps) {
           <CTAButton href={PERSONAL_INFO.github}   label="GitHub"   variant="outline" external icon={<GithubIcon />} />
           <CTAButton href={PERSONAL_INFO.linkedin}  label="LinkedIn" variant="outline" external icon={<LinkedinIcon />} />
           <CTAButton href="/resume.pdf"             label="Resume"   variant="primary" download  icon={<DownloadIcon />} />
-          <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Contact" variant="outline" />
+          <CTAButton href={`mailto:${PERSONAL_INFO.email}`} label="Email" variant="outline" external icon={<MailIcon />} />
         </motion.div>
       </div>
 

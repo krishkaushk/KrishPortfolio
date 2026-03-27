@@ -7,12 +7,12 @@ import { SKILL_GROUPS } from "@/data/portfolio";
 
 const container: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.04 } },
+  visible: { transition: { staggerChildren: 0.05 } },
 };
 
-const badgeItem: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+const item: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Skills() {
@@ -25,12 +25,19 @@ export default function Skills() {
         <div className="flex-1 h-px" style={{ background: "var(--border-color)" }} />
       </div>
 
-      <div className="flex flex-col gap-10">
-        {SKILL_GROUPS.map((group) => (
-          <div key={group.category} className="grid md:grid-cols-[200px_1fr] gap-6 md:gap-12 pt-6 border-t border-border">
-            <span className="font-mono text-xs text-text-secondary tracking-wide">
+      {/* 3-column grid — one column per category */}
+      <div className="grid md:grid-cols-3 gap-0 border-t border-border">
+        {SKILL_GROUPS.map((group, gi) => (
+          <div
+            key={group.category}
+            className={`py-8 flex flex-col gap-5 ${gi < SKILL_GROUPS.length - 1 ? "md:border-r border-border md:pr-8" : ""} ${gi > 0 ? "md:pl-8" : ""}`}
+          >
+            {/* Category heading */}
+            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-highlight">
               {group.category}
             </span>
+
+            {/* Skill badges */}
             <motion.div
               variants={container}
               initial="hidden"
@@ -39,14 +46,13 @@ export default function Skills() {
               className="flex flex-wrap gap-2"
             >
               {group.skills.map((skill) => (
-                <motion.div key={skill} variants={badgeItem}>
+                <motion.div key={skill} variants={item}>
                   <SkillBadge label={skill} />
                 </motion.div>
               ))}
             </motion.div>
           </div>
         ))}
-        <div className="border-t border-border" />
       </div>
     </SectionWrapper>
   );

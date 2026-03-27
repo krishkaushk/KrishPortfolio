@@ -31,7 +31,7 @@ export default function About() {
           <div className="flex flex-col gap-3 border-t border-border pt-6">
             {[
               PERSONAL_INFO.degree,
-              `Minor — ${PERSONAL_INFO.minor}`,
+              `Minor - ${PERSONAL_INFO.minor}`,
               PERSONAL_INFO.university,
               `Class of ${PERSONAL_INFO.gradYear}`,
             ].map((item, i) => (

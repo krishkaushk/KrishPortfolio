@@ -142,16 +142,18 @@ export default function Projects() {
                   >
                     <GithubIcon /> GitHub
                   </a>
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-xs text-text-secondary hover:text-text-primary transition-colors duration-200 border border-border hover:border-text-secondary px-3 py-1.5 rounded-sm"
-                    style={{ background: "var(--bg-secondary)" }}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ExternalIcon /> Devpost
-                  </a>
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs text-text-secondary hover:text-text-primary transition-colors duration-200 border border-border hover:border-text-secondary px-3 py-1.5 rounded-sm"
+                      style={{ background: "var(--bg-secondary)" }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalIcon /> Devpost
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

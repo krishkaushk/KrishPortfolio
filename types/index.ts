@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   stack: string[];
   githubUrl: string;
-  demoUrl: string;
+  demoUrl?: string;
   accentColor: string;
 }
 
