@@ -82,11 +82,9 @@ export default function Hero() {
           {/* Name */}
           <h1
             className="font-playfair text-text-primary leading-none mb-5"
-            style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)" }}
+            style={{ fontSize: "clamp(2.6rem, 8vw, 6rem)", letterSpacing: "-0.01em" }}
           >
-            Krish Zhao
-            <br />
-            <span className="italic text-highlight">Kaushik</span>
+            Krish Zhao Kaushik
           </h1>
 
           {/* Tagline + divider */}

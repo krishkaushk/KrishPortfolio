@@ -25,9 +25,9 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#hero"
-          className="font-grotesk font-bold text-sm tracking-tight text-text-primary hover:text-text-secondary transition-colors duration-200"
+          className="font-playfair font-bold text-base text-text-primary hover:text-text-secondary transition-colors duration-200"
         >
-          KZK
+          Krish Kaushik
         </a>
 
         {/* Desktop */}
