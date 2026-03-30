@@ -66,6 +66,15 @@ export const PROJECTS: Project[] = [
     accentColor: "#B07840",
   },
   {
+    id: "rubiks-cube",
+    title: "Rubik's Cube Solver",
+    description:
+      "A Rubik's cube solver in Java; evolved from bidirectional BFS to Kociemba's two-phase algorithm with pattern databases.",
+    stack: ["Java", "IDA*", "Kociemba's Algorithm"],
+    githubUrl: "https://github.com/simonn810/CMPT-225-Rubiks-Cube-Project-",
+    accentColor: "#A0845C",
+  },
+  {
     id: "portfolio",
     title: "My Website",
     description:
