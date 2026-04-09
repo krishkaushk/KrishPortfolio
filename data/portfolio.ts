@@ -57,6 +57,15 @@ export const PROJECTS: Project[] = [
     accentColor: "#C5975C",
   },
   {
+    id: "eyetag",
+    title: "EyeTag",
+    description:
+      "An eye-tracking arcade shooter in Python using MediaPipe, iterating across ML approaches: V2, a custom ridge regression (22-feature iris landmark vectors, session-specific calibration, custom EMA smoother) and V3, a PyTorch feedforward neural network (ReLU activations, Adam optimizer, MSE loss).",
+    stack: ["Python", "MediaPipe", "OpenCV", "PyTorch", "scikit-learn", "pygame"],
+    githubUrl: "https://github.com/krishkaushk/EyeTag",
+    accentColor: "#8C7355",
+  },
+  {
     id: "pitchpal",
     title: "PitchPal",
     description:
@@ -74,15 +83,6 @@ export const PROJECTS: Project[] = [
     stack: ["Java", "IDA*", "Kociemba's Algorithm"],
     githubUrl: "https://github.com/simonn810/CMPT-225-Rubiks-Cube-Project-",
     accentColor: "#A0845C",
-  },
-  {
-    id: "eyetag",
-    title: "EyeTag",
-    description:
-      "An eye-tracking arcade shooter where your gaze is the crosshair. Calibrates to your eyes in ~25 seconds, then uses a Ridge regression model on MediaPipe facial landmarks to predict gaze and auto-fire at enemies in real time.",
-    stack: ["Python", "MediaPipe", "OpenCV", "scikit-learn", "pygame", "NumPy"],
-    githubUrl: "https://github.com/krishkaushk/EyeTag",
-    accentColor: "#8C7355",
   },
   {
     id: "lockalarm",
