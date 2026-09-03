@@ -55,6 +55,35 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/krishkaushk/InternLinked",
     demoUrl: "https://devpost.com/software/internlinked",
     accentColor: "#C5975C",
+    spotlight: true,
+    images: [],
+    story: {
+      subtitle: "[STORY TODO — replace before launch]",
+      role: "[STORY TODO — replace before launch]",
+      timeline: "[STORY TODO — replace before launch]",
+      blocks: [
+        {
+          type: "text",
+          heading: "The Problem",
+          body: "[STORY TODO — replace before launch] Why this got built — the real pain point behind it.",
+        },
+        {
+          type: "callout",
+          label: "The Challenge",
+          body: "[STORY TODO — replace before launch] The hard technical or product decision that came up.",
+        },
+        {
+          type: "text",
+          heading: "What Happened",
+          body: "[STORY TODO — replace before launch] How it was solved, including anything that broke or had to change along the way.",
+        },
+        {
+          type: "callout",
+          label: "What I'd Do Differently",
+          body: "[STORY TODO — replace before launch] Hindsight, tradeoffs, next steps.",
+        },
+      ],
+    },
   },
   {
     id: "eyetag",
@@ -64,6 +93,35 @@ export const PROJECTS: Project[] = [
     stack: ["Python", "MediaPipe", "OpenCV", "PyTorch", "scikit-learn", "pygame"],
     githubUrl: "https://github.com/krishkaushk/EyeTag",
     accentColor: "#8C7355",
+    spotlight: true,
+    images: [],
+    story: {
+      subtitle: "[STORY TODO — replace before launch]",
+      role: "[STORY TODO — replace before launch]",
+      timeline: "[STORY TODO — replace before launch]",
+      blocks: [
+        {
+          type: "text",
+          heading: "The Problem",
+          body: "[STORY TODO — replace before launch] Why this got built — the real pain point behind it.",
+        },
+        {
+          type: "callout",
+          label: "The Challenge",
+          body: "[STORY TODO — replace before launch] Why V2 (ridge regression) wasn't enough and what it revealed.",
+        },
+        {
+          type: "text",
+          heading: "What Happened",
+          body: "[STORY TODO — replace before launch] The rebuild into V3 (PyTorch feedforward net) — what changed and why.",
+        },
+        {
+          type: "callout",
+          label: "What I'd Do Differently",
+          body: "[STORY TODO — replace before launch] Hindsight, tradeoffs, next steps.",
+        },
+      ],
+    },
   },
   {
     id: "pitchpal",
