@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useTheme } from "next-themes";
 
 export default function BackgroundCanvas() {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
   const springX = useSpring(mouseX, { stiffness: 40, damping: 25 });
@@ -19,7 +15,6 @@ export default function BackgroundCanvas() {
   const blob2Y = useTransform(springY, [0, 1], [20, -20]);
 
   useEffect(() => {
-    setMounted(true);
     const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX / window.innerWidth);
       mouseY.set(e.clientY / window.innerHeight);
@@ -27,8 +22,6 @@ export default function BackgroundCanvas() {
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
   }, [mouseX, mouseY]);
-
-  const isDark = !mounted || resolvedTheme !== "light";
 
   return (
     <div
@@ -42,9 +35,7 @@ export default function BackgroundCanvas() {
         style={{
           width: "clamp(400px, 55vw, 800px)",
           height: "clamp(400px, 55vw, 800px)",
-          background: isDark
-            ? "radial-gradient(circle, rgba(197,151,92,0.11) 0%, transparent 65%)"
-            : "radial-gradient(circle, rgba(160,80,50,0.13) 0%, transparent 40%)",
+          background: "radial-gradient(circle, rgba(160,80,50,0.13) 0%, transparent 40%)",
           top: "-15%",
           left: "-10%",
           filter: "blur(1px)",
@@ -59,9 +50,7 @@ export default function BackgroundCanvas() {
         style={{
           width: "clamp(300px, 40vw, 600px)",
           height: "clamp(300px, 40vw, 600px)",
-          background: isDark
-            ? "radial-gradient(circle, rgba(180,130,60,0.06) 0%, transparent 65%)"
-            : "radial-gradient(circle, rgba(140,65,40,0.09) 0%, transparent 40%)",
+          background: "radial-gradient(circle, rgba(140,65,40,0.09) 0%, transparent 40%)",
           bottom: "5%",
           right: "-5%",
           filter: "blur(1px)",

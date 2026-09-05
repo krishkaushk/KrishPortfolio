@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { Space_Grotesk, Inter, JetBrains_Mono, Playfair_Display, Caveat } from "next/font/google";
+import { MotionConfig } from "framer-motion";
+import BackgroundCanvas from "@/components/BackgroundCanvas";
+import IntroGate from "@/components/IntroGate";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import PageTransition from "@/components/layout/PageTransition";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-grotesk",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -52,13 +64,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${playfair.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${playfair.variable} ${caveat.variable}`}
     >
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem={true}>
-          {children}
-        </ThemeProvider>
+        <MotionConfig reducedMotion="user">
+          <BackgroundCanvas />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <IntroGate>
+              <Navbar />
+              <main>
+                <PageTransition>{children}</PageTransition>
+              </main>
+              <Footer />
+            </IntroGate>
+          </div>
+        </MotionConfig>
       </body>
     </html>
   );

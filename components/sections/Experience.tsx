@@ -2,18 +2,13 @@
 
 import { motion } from "framer-motion";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionLabel from "@/components/ui/SectionLabel";
 import { EXPERIENCE } from "@/data/portfolio";
 
 export default function Experience() {
   return (
     <SectionWrapper id="experience">
-      {/* Section label + rule */}
-      <div className="flex items-center gap-4 mb-16">
-        <p className="font-mono text-highlight text-xs tracking-[0.2em] uppercase shrink-0">
-          Experience
-        </p>
-        <div className="flex-1 h-px" style={{ background: "var(--border-color)" }} />
-      </div>
+      <SectionLabel index="01" label="Experience" />
 
       <div className="flex flex-col">
         {EXPERIENCE.map((exp, i) => (

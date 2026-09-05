@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "@/components/ui/ThemeToggle";
 import { NAV_LINKS } from "@/data/portfolio";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -23,30 +25,33 @@ export default function Navbar() {
     >
       <nav className="max-w-5xl mx-auto px-6 flex items-center justify-between h-14">
         {/* Logo */}
-        <a
-          href="#hero"
-          className="font-playfair font-bold text-base text-text-primary hover:text-text-secondary transition-colors duration-200"
+        <Link
+          href="/"
+          className="font-grotesk font-bold text-base text-text-primary hover:text-text-secondary transition-colors duration-200"
         >
           Krish Kaushik
-        </a>
+        </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-7">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="font-inter text-xs text-text-secondary hover:text-text-primary transition-colors duration-200 tracking-wide"
-            >
-              {link.label}
-            </a>
-          ))}
-          <ThemeToggle />
+          {NAV_LINKS.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-grotesk text-xs transition-colors duration-200 tracking-wide ${
+                  active ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Mobile */}
         <div className="flex md:hidden items-center gap-3">
-          <ThemeToggle />
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="w-8 h-8 flex flex-col items-center justify-center gap-1.5 rounded-sm border border-border text-text-secondary hover:border-text-secondary transition-colors duration-200"
@@ -69,16 +74,21 @@ export default function Navbar() {
             className="md:hidden overflow-hidden bg-bg-elevated border-b border-border"
           >
             <div className="flex flex-col py-4 px-6 gap-5">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-inter text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`font-grotesk text-sm transition-colors duration-200 ${
+                      active ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

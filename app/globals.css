@@ -4,7 +4,7 @@
 
 /* ─── Color tokens ─────────────────────────────────────────── */
 :root {
-  /* Light — warm cream like the Premium Quality inspo */
+  /* Warm cream — the only theme; locked, not user-toggleable. */
   --bg-primary:   #f5f0e8;
   --bg-secondary: #ede8df;
   --bg-elevated:  #faf8f4;
@@ -14,19 +14,10 @@
   --accent:         #111111;
   --accent-inv:     #f5f0e8;
   --highlight:      #7A4A1E;
-}
-
-.dark {
-  /* Dark — charcoal like Seventy Studios, not pure black */
-  --bg-primary:   #141414;
-  --bg-secondary: #1c1c1c;
-  --bg-elevated:  #222222;
-  --text-primary:   #f0eeea;
-  --text-secondary: #888888;
-  --border-color:   #2e2e2e;
-  --accent:         #f0eeea;
-  --accent-inv:     #141414;
-  --highlight:      #C5975C;
+  /* Near-white polaroid/paper frame — pops off the cream page background */
+  --paper:          #fffdf8;
+  /* Soft graphite for hand-drawn doodle accents */
+  --sketch:         rgba(26, 26, 26, 0.35);
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */

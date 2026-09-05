@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -13,6 +12,7 @@ const config: Config = {
         playfair: ["var(--font-playfair)", "Georgia", "serif"],
         inter:    ["var(--font-inter)"],
         mono:     ["var(--font-mono)", "monospace"],
+        hand:     ["var(--font-hand)", "cursive"],
       },
       colors: {
         bg: {
@@ -28,6 +28,8 @@ const config: Config = {
         "accent-inv": "var(--accent-inv)",
         highlight:    "var(--highlight)",
         border:       "var(--border-color)",
+        paper:        "var(--paper)",
+        sketch:       "var(--sketch)",
       },
     },
   },

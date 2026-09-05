@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionLabel from "@/components/ui/SectionLabel";
 import { PERSONAL_INFO, BIO } from "@/data/portfolio";
 
 function getYearOfStudy(gradYear: number): string {
@@ -17,30 +17,13 @@ function getYearOfStudy(gradYear: number): string {
 export default function About() {
   return (
     <SectionWrapper id="about">
-      {/* Section label + rule */}
-      <div className="flex items-center gap-4 mb-16">
-        <p className="font-mono text-highlight text-xs tracking-[0.2em] uppercase shrink-0">
-          About
-        </p>
-        <div className="flex-1 h-px" style={{ background: "var(--border-color)" }} />
-      </div>
+      <SectionLabel index="00" label="Who Am I" />
 
       <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-20">
 
         {/* Left — meta card */}
         <div>
-          {/* Profile image */}
-          <div className="relative w-36 h-36 rounded-full overflow-hidden mb-6">
-            <Image
-              src="/assets/profile.png"
-              alt="Krish Kaushik"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-
-          <div className="flex flex-col gap-3 border-t border-border pt-6">
+          <div className="flex flex-col gap-3">
             {[
               PERSONAL_INFO.degree,
               `${PERSONAL_INFO.minor} Minor`,

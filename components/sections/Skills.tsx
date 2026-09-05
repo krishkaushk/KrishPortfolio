@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionLabel from "@/components/ui/SectionLabel";
 import SkillBadge from "@/components/ui/SkillBadge";
 import { SKILL_GROUPS } from "@/data/portfolio";
 
@@ -18,12 +19,7 @@ const item: Variants = {
 export default function Skills() {
   return (
     <SectionWrapper id="skills">
-      <div className="flex items-center gap-4 mb-16">
-        <p className="font-mono text-highlight text-xs tracking-[0.2em] uppercase shrink-0">
-          Skills
-        </p>
-        <div className="flex-1 h-px" style={{ background: "var(--border-color)" }} />
-      </div>
+      <SectionLabel index="02" label="Skills" />
 
       {/* 3-column grid — one column per category */}
       <div className="grid md:grid-cols-3 gap-0">

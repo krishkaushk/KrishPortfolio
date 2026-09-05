@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { useTheme } from "next-themes";
 
 type Phase = "entering" | "exiting" | "done";
 
@@ -30,15 +29,10 @@ interface IntroProps {
 
 export default function Intro({ onComplete }: IntroProps) {
   const [phase, setPhase] = useState<Phase>("entering");
-  const [mounted, setMounted] = useState(false);
-
-  const { resolvedTheme } = useTheme();
 
   // Keep a ref to the latest callback so the timer effect never needs it as a dep
   const cbRef = useRef(onComplete);
   useEffect(() => { cbRef.current = onComplete; });
-
-  useEffect(() => { setMounted(true); }, []);
 
   // Empty dep array — timers run exactly once on mount, never reset on re-renders
   useEffect(() => {
@@ -57,11 +51,9 @@ export default function Intro({ onComplete }: IntroProps) {
 
   if (phase === "done") return null;
 
-  // Default dark until hydrated (avoids flash)
-  const isDark = !mounted || resolvedTheme !== "light";
-  const overlayBg  = isDark ? "#141414" : "#f5f0e8";
-  const nameColor  = isDark ? "#f0eeea" : "#111111";
-  const trackColor = isDark ? "rgba(240,238,234,0.1)" : "rgba(17,17,17,0.1)";
+  const overlayBg = "#f5f0e8";
+  const nameColor = "#111111";
+  const trackColor = "rgba(17,17,17,0.1)";
 
   const out = phase === "exiting";
 
@@ -97,7 +89,8 @@ export default function Intro({ onComplete }: IntroProps) {
                 style={{
                   display: "inline-block",
                   fontSize: "clamp(2rem, 10vw, 7rem)",
-                  fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
+                  fontFamily: "var(--font-grotesk, 'Space Grotesk', sans-serif)",
+                  fontWeight: 700,
                   color: nameColor,
                   letterSpacing: "-0.01em",
                   lineHeight: 1.1,
