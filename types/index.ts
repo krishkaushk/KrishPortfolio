@@ -12,6 +12,12 @@ export interface Project {
   story?: ProjectStory;
   /** Optional gallery strip shown in the spotlight popup. */
   images?: ProjectImage[];
+  /** Cover art shown in the project cluster. Falls back to an accent-color swatch when unset. */
+  coverImage?: string;
+  /** Alt text for coverImage; falls back to `${title} cover art` when omitted. */
+  coverAlt?: string;
+  /** Set true to keep the project in data but leave it out of the visible project display. */
+  hidden?: boolean;
 }
 
 export interface ProjectImage {

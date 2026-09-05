@@ -22,11 +22,9 @@ export const BIO =
   "I like building things end-to-end. Backend, frontend, whatever it takes to ship. Outside of that, I'm usually outdoors.";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const EXPERIENCE: ExperienceItem[] = [
@@ -54,7 +52,7 @@ export const PROJECTS: Project[] = [
     stack: ["JavaScript", "React", "Supabase", "SQL", "HTML", "CSS"],
     githubUrl: "https://github.com/krishkaushk/InternLinked",
     demoUrl: "https://devpost.com/software/internlinked",
-    accentColor: "#C5975C",
+    accentColor: "#3F6659",
     spotlight: true,
     images: [],
     story: {
@@ -92,7 +90,7 @@ export const PROJECTS: Project[] = [
       "An eye-tracking arcade shooter in Python using MediaPipe, iterating across ML approaches: V2, a custom ridge regression (22-feature iris landmark vectors, session-specific calibration, custom EMA smoother) and V3, a PyTorch feedforward neural network (GeLU activations, Adam optimizer, MSE loss).",
     stack: ["Python", "MediaPipe", "OpenCV", "PyTorch", "scikit-learn", "pygame"],
     githubUrl: "https://github.com/krishkaushk/EyeTag",
-    accentColor: "#8C7355",
+    accentColor: "#C1622D",
     spotlight: true,
     images: [],
     story: {
@@ -131,7 +129,7 @@ export const PROJECTS: Project[] = [
     stack: ["React", "TypeScript", "Gemini API", "ElevenLabs API", "HTML", "CSS"],
     githubUrl: "https://github.com/StormHacks2025/pitchpal1",
     demoUrl: "https://devpost.com/software/pitchpal-t5opzn",
-    accentColor: "#B07840",
+    accentColor: "#4C6B8A",
   },
   {
     id: "rubiks-cube",
@@ -140,7 +138,7 @@ export const PROJECTS: Project[] = [
       "A Rubik's cube solver in Java; evolved from bidirectional BFS to Kociemba's two-phase algorithm with pattern databases.",
     stack: ["Java", "IDA*", "Kociemba's Algorithm"],
     githubUrl: "https://github.com/simonn810/CMPT-225-Rubiks-Cube-Project-",
-    accentColor: "#A0845C",
+    accentColor: "#AD8235",
   },
   {
     id: "lockalarm",
@@ -149,7 +147,8 @@ export const PROJECTS: Project[] = [
       "Webcam-based focus monitor that detects when you look away and blasts an alarm to keep you accountable. Tracks face absence, head position, and eye closure across three priority levels with real-time metrics and blink filtering.",
     stack: ["Python", "MediaPipe", "OpenCV"],
     githubUrl: "https://github.com/krishkaushk/LockAlarm",
-    accentColor: "#7A6548",
+    accentColor: "#6B4C63",
+    hidden: true,
   },
   {
     id: "portfolio",
@@ -158,7 +157,7 @@ export const PROJECTS: Project[] = [
       "The site you're on. Built with Next.js, TypeScript, Tailwind, and Framer Motion — deployed on Vercel.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     githubUrl: "https://github.com/krishkaushk/krish-portfolio",
-    accentColor: "#9A7B4F",
+    accentColor: "#748C69",
   },
 ];
 
