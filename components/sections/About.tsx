@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { PERSONAL_INFO, BIO } from "@/data/portfolio";
+import Image from "next/image";
+
 
 function getYearOfStudy(gradYear: number): string {
   const now = new Date();
@@ -23,6 +25,16 @@ export default function About() {
 
         {/* Left — meta card */}
         <div>
+          <div className="relative w-40 md:w-56 aspect-square overflow-hidden rounded-full mx-auto md:mx-0 mb-6">
+            <Image
+              src="/assets/profile.png"
+              alt="Krish Kaushik"
+              fill
+              sizes="(max-width: 768px) 160px, 224px"
+              quality={90}
+              className="object-cover"
+            />
+          </div>
           <div className="flex flex-col gap-3">
             {[
               PERSONAL_INFO.degree,

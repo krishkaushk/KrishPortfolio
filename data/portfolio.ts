@@ -15,11 +15,11 @@ export const PERSONAL_INFO = {
 export const TAGLINE = "I build things.";
 
 export const BIO =
-  "I'm studying Computing Science at SFU with a minor in Business — which means I'm equally comfortable " +
-  "shipping a feature and questioning whether the feature should exist at all.\n\n" +
-  "I'm interested in AI, machine learning, data flow, and building products people " +
-  "actually want to use. " +
-  "I like building things end-to-end. Backend, frontend, whatever it takes to ship. Outside of that, I'm usually outdoors.";
+  "I'm studying Computing Science at SFU with a minor in Business because I enjoy solving problems, " + 
+  "and figuring out how to make things work.\n\n" +
+  "I'm especially interested in AI and machine learning as well as full stack development, and building integrated " +
+  "systems where different technologies work together. Looking ahead, I'm also interested in learning more about robotics.\n\n" + 
+  "Apart from that, I'm usually outdoors.";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
